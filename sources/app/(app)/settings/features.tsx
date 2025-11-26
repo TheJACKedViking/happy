@@ -1,3 +1,4 @@
+import React from 'react';
 import { Platform } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { Item } from '@/components/Item';
@@ -7,7 +8,7 @@ import { useSettingMutable, useLocalSettingMutable } from '@/sync/storage';
 import { Switch } from '@/components/Switch';
 import { t } from '@/text';
 
-export default function FeaturesSettingsScreen() {
+function FeaturesSettingsScreen() {
     const [experiments, setExperiments] = useSettingMutable('experiments');
     const [commandPaletteEnabled, setCommandPaletteEnabled] = useLocalSettingMutable('commandPaletteEnabled');
     const [markdownCopyV2, setMarkdownCopyV2] = useLocalSettingMutable('markdownCopyV2');
@@ -81,3 +82,5 @@ export default function FeaturesSettingsScreen() {
         </ItemList>
     );
 }
+
+export default React.memo(FeaturesSettingsScreen);

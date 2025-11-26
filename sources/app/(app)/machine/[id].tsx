@@ -62,7 +62,7 @@ const styles = StyleSheet.create((theme) => ({
     },
 }));
 
-export default function MachineDetailScreen() {
+function MachineDetailScreen() {
     const { theme } = useUnistyles();
     const { id: machineId } = useLocalSearchParams<{ id: string }>();
     const router = useRouter();
@@ -551,3 +551,5 @@ export default function MachineDetailScreen() {
         </>
     );
 }
+
+export default React.memo(MachineDetailScreen);

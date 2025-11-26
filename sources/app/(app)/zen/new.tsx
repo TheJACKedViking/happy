@@ -1,5 +1,8 @@
+import React from 'react';
 import { ZenAdd } from '@/-zen/ZenAdd';
 
-export default function NewZenTodoScreen() {
+function NewZenTodoScreen() {
     return <ZenAdd />;
 }
+
+export default NewZenTodoScreen;

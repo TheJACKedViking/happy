@@ -1,5 +1,8 @@
+import React from 'react';
 import { ZenHome } from "@/-zen/ZenHome";
 
-export default function ZenScreen() {
+function ZenScreen() {
     return <ZenHome />
 }
+
+export default React.memo(ZenScreen);

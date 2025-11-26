@@ -119,7 +119,7 @@ const stylesheet = StyleSheet.create((theme) => ({
     },
 }));
 
-export default function ArtifactsScreen() {
+function ArtifactsScreen() {
     const { theme } = useUnistyles();
     const styles = stylesheet;
     const safeArea = useSafeAreaInsets();
@@ -262,3 +262,5 @@ export default function ArtifactsScreen() {
         </View>
     );
 }
+
+export default React.memo(ArtifactsScreen);

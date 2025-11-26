@@ -33,6 +33,8 @@ class ApiSocket {
     private reconnectedListeners: Set<() => void> = new Set();
     private statusListeners: Set<(status: 'disconnected' | 'connecting' | 'connected' | 'error') => void> = new Set();
     private currentStatus: 'disconnected' | 'connecting' | 'connected' | 'error' = 'disconnected';
+    private lastError: Error | null = null;
+    private errorListeners: Set<(error: Error | null) => void> = new Set();
 
     //
     // Initialization
@@ -93,6 +95,21 @@ class ApiSocket {
         // Immediately notify with current status
         listener(this.currentStatus);
         return () => this.statusListeners.delete(listener);
+    };
+
+    onErrorChange = (listener: (error: Error | null) => void) => {
+        this.errorListeners.add(listener);
+        // Immediately notify with current error
+        listener(this.lastError);
+        return () => this.errorListeners.delete(listener);
+    };
+
+    getLastError = (): Error | null => {
+        return this.lastError;
+    };
+
+    getStatus = (): 'disconnected' | 'connecting' | 'connected' | 'error' => {
+        return this.currentStatus;
     };
 
     //
@@ -205,7 +222,18 @@ class ApiSocket {
     // Private Methods
     //
 
-    private updateStatus(status: 'disconnected' | 'connecting' | 'connected' | 'error') {
+    private updateStatus(status: 'disconnected' | 'connecting' | 'connected' | 'error', error?: Error) {
+        // Update error state: store error when status is 'error', clear otherwise
+        const newError = status === 'error'
+            ? (error ?? new Error("Unknown error occurred in updateStatus"))
+            : null;
+        const errorChanged = newError !== this.lastError;
+
+        if (errorChanged) {
+            this.lastError = newError;
+            this.errorListeners.forEach(listener => listener(this.lastError));
+        }
+
         if (this.currentStatus !== status) {
             this.currentStatus = status;
             this.statusListeners.forEach(listener => listener(status));
@@ -233,12 +261,12 @@ class ApiSocket {
         // Error events
         this.socket.on('connect_error', (error) => {
             // console.error('🔌 SyncSocket: Connection error', error);
-            this.updateStatus('error');
+            this.updateStatus('error', error);
         });
 
         this.socket.on('error', (error) => {
             // console.error('🔌 SyncSocket: Error', error);
-            this.updateStatus('error');
+            this.updateStatus('error', error);
         });
 
         // Message handling

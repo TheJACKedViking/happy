@@ -1,3 +1,4 @@
+import React from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import { Item } from '@/components/Item';
@@ -8,7 +9,7 @@ import { useUnistyles } from 'react-native-unistyles';
 import { findLanguageByCode, getLanguageDisplayName, LANGUAGES } from '@/constants/Languages';
 import { t } from '@/text';
 
-export default function VoiceSettingsScreen() {
+function VoiceSettingsScreen() {
     const { theme } = useUnistyles();
     const router = useRouter();
     const [voiceAssistantLanguage] = useSettingMutable('voiceAssistantLanguage');
@@ -35,3 +36,5 @@ export default function VoiceSettingsScreen() {
         </ItemList>
     );
 }
+
+export default React.memo(VoiceSettingsScreen);

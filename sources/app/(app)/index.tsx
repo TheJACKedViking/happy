@@ -15,7 +15,7 @@ import { HomeHeaderNotAuth } from "@/components/HomeHeader";
 import { MainView } from "@/components/MainView";
 import { t } from '@/text';
 
-export default function Home() {
+function Home() {
     const auth = useAuth();
     if (!auth.isAuthenticated) {
         return <NotAuthenticated />;
@@ -262,3 +262,5 @@ const styles = StyleSheet.create((theme) => ({
         width: 280,
     },
 }));
+
+export default React.memo(Home);

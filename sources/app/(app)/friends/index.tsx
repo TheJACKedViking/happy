@@ -13,7 +13,7 @@ import { ItemGroup } from '@/components/ItemGroup';
 import { useHappyAction } from '@/hooks/useHappyAction';
 import { useRouter } from 'expo-router';
 
-export default function FriendsScreen() {
+function FriendsScreen() {
     const { credentials } = useAuth();
     const router = useRouter();
     const friends = useAcceptedFriends();
@@ -150,6 +150,8 @@ export default function FriendsScreen() {
         </ItemList>
     );
 }
+
+export default React.memo(FriendsScreen);
 
 const styles = StyleSheet.create((theme) => ({
     groupStyle: {

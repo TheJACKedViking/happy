@@ -68,7 +68,7 @@ const DiffDisplay: React.FC<{ diffContent: string }> = ({ diffContent }) => {
     );
 };
 
-export default function FileScreen() {
+function FileScreen() {
     const route = useRoute();
     const { theme } = useUnistyles();
     const { id: sessionId } = useLocalSearchParams<{ id: string }>();
@@ -485,6 +485,8 @@ export default function FileScreen() {
         </View>
     );
 }
+
+export default React.memo(FileScreen);
 
 const styles = StyleSheet.create((theme) => ({
     container: {

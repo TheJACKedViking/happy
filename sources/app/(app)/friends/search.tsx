@@ -11,7 +11,7 @@ import { ItemList } from '@/components/ItemList';
 import { ItemGroup } from '@/components/ItemGroup';
 import { useSearch } from '@/hooks/useSearch';
 
-export default function SearchFriendsScreen() {
+function SearchFriendsScreen() {
     const { credentials } = useAuth();
     const [searchQuery, setSearchQuery] = useState('');
     const [processingUserId, setProcessingUserId] = useState<string | null>(null);
@@ -142,6 +142,8 @@ export default function SearchFriendsScreen() {
         </KeyboardAvoidingView>
     );
 }
+
+export default React.memo(SearchFriendsScreen);
 
 const styles = StyleSheet.create((theme) => ({
     container: {

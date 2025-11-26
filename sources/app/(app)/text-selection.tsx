@@ -10,7 +10,7 @@ import * as Clipboard from 'expo-clipboard';
 import { Modal } from '@/modal';
 import { Ionicons } from '@expo/vector-icons';
 
-export default function TextSelectionScreen() {
+function TextSelectionScreen() {
     const router = useRouter();
     const navigation = useNavigation();
     const { textId } = useLocalSearchParams<{ textId: string }>();
@@ -147,3 +147,5 @@ const styles = StyleSheet.create((theme) => ({
         borderRadius: 8,
     },
 }));
+
+export default React.memo(TextSelectionScreen);

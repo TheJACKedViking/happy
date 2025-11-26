@@ -1102,7 +1102,7 @@ export function useMachine(machineId: string): Machine | null {
 }
 
 export function useSessionListViewData(): SessionListViewItem[] | null {
-    return storage((state) => state.isDataReady ? state.sessionListViewData : null);
+    return storage(useShallow((state) => state.isDataReady ? state.sessionListViewData : null));
 }
 
 export function useAllSessions(): Session[] {

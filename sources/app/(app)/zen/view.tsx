@@ -1,5 +1,8 @@
+import React from 'react';
 import { ZenView } from '@/-zen/ZenView';
 
-export default function ZenViewScreen() {
+function ZenViewScreen() {
     return <ZenView />;
 }
+
+export default ZenViewScreen;

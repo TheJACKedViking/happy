@@ -16,7 +16,7 @@ import { useUnistyles, StyleSheet } from 'react-native-unistyles';
 import { layout } from '@/components/layout';
 import { FileIcon } from '@/components/FileIcon';
 
-export default function FilesScreen() {
+function FilesScreen() {
     const route = useRoute();
     const router = useRouter();
     const sessionId = (route.params! as any).id as string;
@@ -415,6 +415,8 @@ export default function FilesScreen() {
         </View>
     );
 }
+
+export default React.memo(FilesScreen);
 
 const styles = StyleSheet.create((theme) => ({
     container: {

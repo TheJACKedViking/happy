@@ -6,7 +6,7 @@ import { Message } from '@/sync/typesMessage';
 import { useDemoMessages } from '@/hooks/useDemoMessages';
 import { useMessage } from '@/sync/storage';
 
-export default function MessagesDemoScreen() {
+function MessagesDemoScreen() {
     // Combine all demo messages
     const allMessages = [...debugMessages];
     
@@ -36,3 +36,5 @@ export default function MessagesDemoScreen() {
         </View>
     );
 }
+
+export default React.memo(MessagesDemoScreen);

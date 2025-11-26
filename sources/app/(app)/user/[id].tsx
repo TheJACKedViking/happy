@@ -16,7 +16,7 @@ import { Modal } from '@/modal';
 import { t } from '@/text';
 import { Ionicons } from '@expo/vector-icons';
 
-export default function UserProfileScreen() {
+function UserProfileScreen() {
     const { id } = useLocalSearchParams<{ id: string }>();
     const { credentials } = useAuth();
     const router = useRouter();
@@ -315,3 +315,5 @@ const styles = StyleSheet.create((theme) => ({
         fontWeight: '500',
     },
 }));
+
+export default React.memo(UserProfileScreen);

@@ -66,7 +66,7 @@ const stylesheet = StyleSheet.create((theme) => ({
     },
 }));
 
-export default function MachinePickerScreen() {
+function MachinePickerScreen() {
     const { theme } = useUnistyles();
     const styles = stylesheet;
     const router = useRouter();
@@ -155,3 +155,5 @@ export default function MachinePickerScreen() {
         </>
     );
 }
+
+export default React.memo(MachinePickerScreen);

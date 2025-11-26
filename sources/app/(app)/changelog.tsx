@@ -76,7 +76,7 @@ const styles = StyleSheet.create((theme, runtime) => ({
     }
 }));
 
-export default function ChangelogScreen() {
+function ChangelogScreen() {
     const { theme } = useUnistyles();
     const insets = useSafeAreaInsets();
     const entries = getChangelogEntries();
@@ -145,3 +145,5 @@ export default function ChangelogScreen() {
         </View>
     );
 }
+
+export default React.memo(ChangelogScreen);

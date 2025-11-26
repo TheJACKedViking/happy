@@ -7,7 +7,7 @@ import { ItemGroup } from '@/components/ItemGroup';
 import { layout } from '@/components/layout';
 import { TodoList } from '@/-zen/components/TodoList';
 
-export default function TodoDemoScreen() {
+function TodoDemoScreen() {
 
     const [model, setModel] = React.useState<{ id: string, value: string, done: boolean }[]>([]);
     const [newTodo, setNewTodo] = React.useState('');
@@ -38,3 +38,5 @@ export default function TodoDemoScreen() {
         </View>
     )
 }
+
+export default React.memo(TodoDemoScreen);

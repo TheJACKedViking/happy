@@ -95,7 +95,7 @@ function JsonViewer({ title, data, defaultExpanded = false }: JsonViewerProps) {
     );
 }
 
-export default function ExpoConstantsScreen() {
+function ExpoConstantsScreen() {
     // Get ExponentConstants native module directly
     const ExponentConstants = requireOptionalNativeModule('ExponentConstants');
     const ExpoUpdates = requireOptionalNativeModule('ExpoUpdates');
@@ -392,3 +392,5 @@ export default function ExpoConstantsScreen() {
         </>
     );
 }
+
+export default React.memo(ExpoConstantsScreen);
